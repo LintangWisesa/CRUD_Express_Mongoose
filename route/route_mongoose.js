@@ -81,10 +81,17 @@ router.put('/data/:nis', (req, res)=>{
 })
 
 // route delete data ke mongo
-router.delete('/data', (req, res)=>{
+router.delete('/data/:nis', (req, res)=>{
     mongoose.connect(url, ()=>{
         console.log('Terhubung ke MongoDB!')
-        
+        Pelajar.deleteOne(    
+            {nis: req.params.nis},
+            (error, hasil)=>{
+                console.log(hasil)
+                res.send(hasil)
+                mongoose.disconnect()
+            }   
+        )
     })
 })
 
