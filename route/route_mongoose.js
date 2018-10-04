@@ -58,10 +58,25 @@ router.post('/data', (req, res)=>{
 })
 
 // route update data ke mongo
-router.put('/data', (req, res)=>{
+router.put('/data/:nis', (req, res)=>{
     mongoose.connect(url, ()=>{
         console.log('Terhubung ke MongoDB!')
-        
+        Pelajar.update(
+            {nis: req.params.nis},
+            {
+                nis: req.body.nis,
+                nama: req.body.nama,
+                kelas: req.body.kelas,
+                kota: req.body.kota,
+                lunas: req.body.lunas,
+                tgl: Date().now
+            },
+            (error, hasil)=>{
+                console.log(hasil)
+                res.send(hasil)
+                mongoose.disconnect()
+            }   
+        )
     })
 })
 
