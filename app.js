@@ -1,10 +1,12 @@
 var express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser')
+var routeSaya = require('./route/route_mongoose')
 
 var app = express()
 app.use(bodyParser.json())
 app.use(cors())
+app.use(routeSaya)
 
 // initial route
 app.get('/', (req, res)=>{

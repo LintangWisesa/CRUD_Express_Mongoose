@@ -26,7 +26,7 @@ Pelajar.find((error, hasil)=>{
     console.log(hasil)
 })
 .limit(100)
-.sort({nama: -1})
+.sort({nama: -1})  // descending
 .then(()=>{
     mongoose.disconnect()
 })
